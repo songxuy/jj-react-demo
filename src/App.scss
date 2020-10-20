@@ -1,0 +1,66 @@
+@import '~antd/dist/antd.css';
+.App {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #f4f5f5;
+}
+.header {
+  position: fixed;
+  width: 100%;
+  height: 106px;
+  top: 0;
+  left: 0;
+  margin-bottom: 10px;
+  z-index: 10;
+  transition: transform .3s;
+  .header-top {
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 16px;
+    justify-content: space-between;
+    background-color: #fff;
+    img.logo {
+      padding: 0 8px;
+    }
+    img.usericon {
+      margin: 0 0 0 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  }
+  .header-bottom {
+    position: relative;
+    width: 100%;
+    height: 46px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+    border-top: 1px solid #f1f1f1;
+    ul.tab-ul {
+      position: relative;
+      list-style: none;
+      height: 100%;
+      overflow-x: auto;
+      display: flex;
+      flex-wrap: nowrap;
+      padding: 0;
+      li {
+        height: 100%;
+        position: relative;
+        line-height: 46px;
+        padding: 0 18px;
+        word-break: keep-all;
+        &.active a{
+          color: #007fff;
+        }
+      a {
+        color: #909090;
+      }
+      }
+    }
+  }
+}
