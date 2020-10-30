@@ -57,24 +57,12 @@ function App() {
   const changeDrop = useCallback((i) => {
     setDropIndex(i)
     setMenuVisible(false)
-    /* switch(i) {
-      case '0': browserHistory.push('/');
-      break;
-      case '1': browserHistory.push('/point');
-      break;
-      case '2': browserHistory.push('/topic');
-      break;
-      case '3': browserHistory.push('/volumes');
-      break;
-      case '4': browserHistory.push('/activity');
-      break;
-      default: browserHistory.push('/');
-    } */
   }, [])
   const changeTab = useCallback(
     (i) => {
       if (i !== tabIndex) {
         setTabIndex(i);
+        setDropIndex('0');
       }
     }, [tabIndex]);
   const handleScroll = useCallback(() => {
@@ -90,6 +78,18 @@ function App() {
       window.removeEventListener('scroll', handleScroll, false);
     }
   }, [handleScroll])
+  useEffect(() => {
+    const str = decodeURIComponent(window.location.pathname);
+    if (str.includes('/home')) {
+      for(let i = 0;i < tabList.length; i++) {
+        if (tabList[i].link === str) {
+          setTabIndex(i);
+          break;
+        }
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window.location.pathname])
   return (
     <Router>
     <div className="App">

@@ -1,0 +1,22 @@
+/* p {
+  height: 50px;
+  background-color: #efefef;
+  margin-bottom: 10px;
+} */
+.tab {
+  padding: 16px 0;
+  border-bottom: 1px solid hsla(0,0%,59.2%,.1);
+  background-color: #fff;
+  margin-bottom: 0;
+  span {
+    font-size: 14px;
+    padding: 0 18px;
+    &:not(:last-child) {
+      border-right: 1px solid hsla(0,0%,59.2%,.2);
+    }
+    color: #909090;
+    &.active {
+      color: #007fff;
+    }
+  }
+}
