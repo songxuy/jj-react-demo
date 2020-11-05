@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import './index.scss';
 import ArticleItem from '@/components/ArticleItem'
 import {
   useParams
 } from "react-router-dom";
+import { CaretDownOutlined } from '@ant-design/icons';
+import {
+  Link
+} from "react-router-dom";
+import { Context } from '@/context';
 function Home() {
   const [list, setList] = useState(
     [
@@ -141,8 +146,29 @@ function Home() {
       }
     ]
   );
-  /* let { name } = useParams(); */
+  let { name } = useParams();
   const [active, setActive] = useState(0);
+  const [showAll, setShowAll] = useState(false)
+  const tagList = {
+    "后端": ['Java', '后端', 'Spring Boot', 'Python' ,'Go', 'Spring', 'MySQL', 'Redis', '数据库', '算法', '架构', 'JVM', '服务器', 'Linux', '设计模式'],
+    "前端": ['JavaScript', '前端', 'Vue.js', 'React.js' ,'Node.js', 'CSS', 'Webpack', '微信小程序', '面试', 'TypeScript', 'Flutter', '浏览器', 'Github', 'Promise', '前端框架'],
+    "Android": ['Android', 'Flutter', 'Java', 'Kotlin' ,'源码', 'Android Jetpack', 'gradle', 'Github', 'Google', '面试', '开源', '架构', '性能优化', 'RxJava', 'Android Studio']
+  }
+  let [tabIndex, setTabIndex] = useState(0);
+  const [nowTagList, setNowTagList] = useState([])
+  const tabList = [
+    { name: '推荐', link: '/home/推荐' },
+    { name: '关注', link: '/home/关注' },
+    { name: '后端', link: '/home/后端' },
+    { name: '前端', link: '/home/前端' },
+    { name: 'Android', link: '/home/Android' },
+    { name: 'iOS', link: '/home/iOS' },
+    { name: '人工智能', link: '/home/人工智能' },
+    { name: '开发工具', link: '/home/开发工具' },
+    { name: '代码人生', link: '/home/代码人生' },
+    { name: '阅读', link: '/home/阅读' },
+  ]
+  const top = useContext(Context);
   const changeLike = (item) => {
     list.forEach(it => {
       if (it.id === item.id) {
@@ -154,15 +180,65 @@ function Home() {
         }
       }
     })
-    setList([...list]);
+    setList([...list]); // 重新赋值render
   }
+  const changeTab = useCallback(
+    (i) => {
+      if (i !== tabIndex) {
+        setTabIndex(i);
+      }
+    }, [tabIndex]);
+  useEffect(() => {
+    for(const key in tagList) {
+      if (key === name) {
+        setNowTagList([...tagList[key]]);
+        break;
+      }
+    }
+    return () => {
+      setNowTagList([]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name])
+  useEffect(() => {
+    const str = decodeURIComponent(window.location.pathname);
+    if (str.includes('/home')) {
+      for(let i = 0;i < tabList.length; i++) {
+        if (tabList[i].link === str) {
+          setTabIndex(i);
+          break;
+        }
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window.location.pathname])
   return (
-    <div className="home">
-      <p className="tab">
-        <span className={active===0?'active':''} onClick={() => setActive(0)}>热门</span>
-        <span className={active===1?'active':''} onClick={() => setActive(1)}>最新</span>
-        <span className={active===2?'active':''} onClick={() => setActive(2)}>热榜</span>
-      </p>
+    <div className="home" style={{marginTop: '120px'}}>
+      <div className="header-bottom" style={{transform: top > 150 ? 'translate3d(0,-60px,0)' : 'translate3d(0,0,0)'}}>
+        <ul className="tab-ul">
+            {
+              tabList.map((item,index) => {
+                return <li key={item.name} className={tabIndex===index?'active':''} onClick={() => changeTab(index)}><Link to={item.link}>{item.name}</Link></li>
+              })
+            }
+        </ul>
+      </div>
+      {
+        nowTagList.length ? <div className="tag-list">
+        <p className="active">全部</p>
+        {
+          (showAll ? nowTagList : nowTagList.slice(0, 9)).map((it) => {
+            return <p key={it}>{it}</p>
+          })
+        }
+        { !showAll ? <p onClick={() => setShowAll(true)}>展开<CaretDownOutlined style={{color: '#8a9aa9'}}/></p> : undefined}
+      </div> : undefined
+      }
+      { name === '推荐' ? <p className="tab">
+        <span className = {active === 0 ?'active' : ''} onClick={() => setActive(0)}>热门</span>
+        <span className = {active === 1 ?'active' : ''} onClick={() => setActive(1)}>最新</span>
+        <span className = {active === 2 ?'active' : ''} onClick={() => setActive(2)}>热榜</span>
+      </p> : undefined }
       {
         list.map((item, index) => {
           return <ArticleItem key={item.id + index.toString()} item={item} changeLike={changeLike}/>

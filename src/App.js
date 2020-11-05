@@ -11,27 +11,18 @@ import Activity from '@/pages/activity';
 import Point from '@/pages/point';
 import Topic from '@/pages/topic';
 import Volumes from '@/pages/volumes';
+import Center from '@/pages/center';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
 import logo from '@/assets/images/juejin.svg';
+import { Context } from './context/index.js';
 function App() {
   let [menuVisible, setMenuVisible] = useState(false);
-  let [tabIndex, setTabIndex] = useState(0);
+  
   let [top, setTop] = useState(0);
   let [dropIndex, setDropIndex] = useState('0');
-  const tabList = [
-    { name: '推荐', link: '/home/推荐' },
-    { name: '关注', link: '/home/关注' },
-    { name: '后端', link: '/home/后端' },
-    { name: '前端', link: '/home/前端' },
-    { name: 'Android', link: '/home/Android' },
-    { name: 'iOS', link: '/home/iOS' },
-    { name: '人工智能', link: '/home/人工智能' },
-    { name: '开发工具', link: '/home/开发工具' },
-    { name: '代码人生', link: '/home/代码人生' },
-    { name: '阅读', link: '/home/阅读' },
-  ]
+  
   const menu =(
       <Menu 
         style={{ width: 80, textAlign: 'center' }}
@@ -58,13 +49,6 @@ function App() {
     setDropIndex(i)
     setMenuVisible(false)
   }, [])
-  const changeTab = useCallback(
-    (i) => {
-      if (i !== tabIndex) {
-        setTabIndex(i);
-        setDropIndex('0');
-      }
-    }, [tabIndex]);
   const handleScroll = useCallback(() => {
     //滚动条高度
     // let clientHeight = document.documentElement.clientHeight; //可视区域高度
@@ -78,18 +62,7 @@ function App() {
       window.removeEventListener('scroll', handleScroll, false);
     }
   }, [handleScroll])
-  useEffect(() => {
-    const str = decodeURIComponent(window.location.pathname);
-    if (str.includes('/home')) {
-      for(let i = 0;i < tabList.length; i++) {
-        if (tabList[i].link === str) {
-          setTabIndex(i);
-          break;
-        }
-      }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [window.location.pathname])
+  
   return (
     <Router>
     <div className="App">
@@ -103,19 +76,11 @@ function App() {
           </Dropdown>
           <Input placeholder="搜索B站" style={{width: '120px', height: '34px', margin: '0 10px 0 20px'}} onPressEnter={(e) => console.log(e.target.value)}/>
           <MessageFilled style={{color: '#71777c', fontSize: '24px', padding: '0 10px'}}/>
-          <img className="usericon" src={require('./assets/images/icon.png')} alt="user icon"/>
-        </div>
-        <div className="header-bottom">
-          <ul className="tab-ul">
-              {
-                tabList.map((item,index) => {
-                  return <li key={item.name} className={tabIndex===index?'active':''} onClick={() => changeTab(index)}><Link to={item.link}>{item.name}</Link></li>
-                })
-              }
-          </ul>
-        </div>
+          <Link to="/center"><img className="usericon" src={require('./assets/images/icon.png')} alt="user icon"/></Link>
+        </div> 
       </div>
-      <div style={{marginTop: '116px'}}>
+      <div style={{marginTop: '60px'}}>
+        <Context.Provider value={top}>
 			  	<Switch>
             <Route exact path="/"><Redirect to="/home/推荐" /></Route>
 			  		<Route path="/home/:name" component={HomePage} />
@@ -123,7 +88,9 @@ function App() {
             <Route path="/point" component={Point} />
             <Route path="/topic" component={Topic} />
             <Route path="/volumes" component={Volumes} />
+            <Route path="/center" component={Center} />
 			  	</Switch>
+          </Context.Provider>
       </div>
     </div>
     </Router>

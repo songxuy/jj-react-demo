@@ -1,0 +1,51 @@
+.center {
+  position: relative;
+  margin-top: 80px;
+  background-color: #f4f5f5;
+  .user-info {
+    padding: 24px 24px 20px;
+    background-color: #fff;
+    width: calc(100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .icon {
+      position: relative;
+      text-align: center;
+      img {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+      }
+    }
+    .user-name {
+      margin: 10px 0;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .user-desc {
+      position: relative;
+      p {
+        margin-bottom:5px;
+        color: #4a68ad;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
+    .user-tab {
+      position: relative;
+      display: flex;
+      margin-top: 15px;
+      flex-wrap: nowrap;
+      width: 100%;
+      p {
+        flex-basis: 25%;
+        margin-bottom: 0;
+        span {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

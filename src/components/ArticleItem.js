@@ -17,7 +17,7 @@ function ArticleItem(props) {
           }
         </p>
       </div>
-        <div className="art-title"><p>{props.item.title}</p></div>
+      <div className="art-title"><p>{props.item.title}</p></div>
       <div className="active-btn">
         <p onClick={() => props.changeLike(props.item)}>{ props.item.isLike ? <img src={require('../assets/images/zan2.svg')} alt="zan" /> : <img src={require('../assets/images/zan.svg')} alt="zan"/>} <span className={props.item.isLike ? 'count2' : 'count'}>{props.item.like}</span></p>
         <p><img src={require('../assets/images/comment.svg')} alt="comment"/><span className="count">{props.item.commentsNum}</span></p>
