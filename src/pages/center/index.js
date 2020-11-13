@@ -85,7 +85,7 @@ function Center() {
       if(timer.current === flagList.length - 1) {
         setFlagIdx(0);
       } else {
-        setFlagIdx(timer.current + 1);
+        setFlagIdx(timer.current + 1)
       }
     }, 2000)
     return () => {
