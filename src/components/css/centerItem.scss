@@ -1,0 +1,107 @@
+.centerItem {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 8px;
+  .top-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 16px 20px 0;
+    .icon {
+      flex-basis: 45px;
+      img {
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+      }
+    }
+    .centerItem-info {
+      flex-basis: 70%;
+      margin-left: 10px;
+      p {
+        &:nth-child(1) {
+          font-weight: 600;
+          font-size: 15px;
+          color: #17181a;
+        }
+        &:nth-child(2) {
+          margin: .3px 0 0;
+          font-size: 13px;
+          color: #8a9aa9;
+          cursor: default;
+        }
+      }
+    }
+    .gz-btn1 {
+      width: 55px;
+      height: 26px;
+      font-size: 13px;
+      border:1px solid #007fff;
+      color: #007fff;
+      text-align: center;
+      line-height: 26px;
+    }
+    .gz-btn2 {
+      width: 55px;
+      height: 26px;
+      font-size: 13px;
+      border: 1px solid #6cbd45;
+      color: #6cbd45;
+      text-align: center;
+      line-height: 26px;
+    }
+  }
+  .center-content {
+    padding: 6px 20px 10px;
+    position: relative;
+    .title {
+      margin: 0;
+      font-size: 17px;
+      color: #17181a;
+      line-height: 1.5;
+      font-weight: bold;
+    }
+    .content {
+      font-size: 15px;
+      color: #5c6066;
+      line-height: 1.53;
+      margin-top: 3px;
+      padding: 3px 0;
+    }
+  }
+  .active-btn {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 3px;
+    height: 34px;
+    border-top: 1px solid #ebebeb;
+    p {
+      flex-basis: 50%;
+      height: 100%;
+      position: relative;
+      text-align: center;;
+      line-height: 34px;
+      span {
+        position: relative;
+        margin-left: 5px;
+        color: #8a93a0;
+        top: 2px;
+        &.count2 {
+          color:#6cbd45;
+        }
+      }
+      &:nth-child(1)::after{
+        content: "";
+        position: absolute;
+        top: 7px;
+        right: 0;
+        width: 1px;
+        height: 20px;
+        background-color: #ebebeb;
+      }
+    }
+  }
+}

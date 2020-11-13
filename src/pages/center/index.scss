@@ -1,7 +1,10 @@
 .center {
   position: relative;
-  margin-top: 80px;
+  margin-top: 70px;
   background-color: #f4f5f5;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
   .user-info {
     padding: 24px 24px 20px;
     background-color: #fff;
@@ -9,6 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 10px;
     .icon {
       position: relative;
       text-align: center;
@@ -44,6 +48,93 @@
         span {
           display: block;
           width: 100%;
+          &:nth-child(1) {
+            margin-bottom: 4px;
+            color: #30445a;
+            font-size: 16px;
+            font-weight: 500;
+          }
+          &:nth-child(2) {
+            color:#31455d;
+            font-size: 14px;
+            opacity: .5;
+          }
+        }
+        &.btn {
+          font-weight: 400;
+          color: #007fff;
+          text-align: center;
+          border: 1px solid;
+          background-color: #fff;
+          border-radius: 5px;
+          padding: 5px;
+          height: 25px;
+          line-height: 25px;
+          box-sizing: content-box;
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+  .user-tab2 {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    display: flex;
+    border-bottom: 1px solid #ebebeb;
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #31445b;
+      text-align: center;
+      flex-basis: 25%;
+      height: 100%;
+      line-height: 50px;
+      span {
+        margin-left: 4px;
+        font-size: 13px;
+        color: #b2bac2;
+        line-height: 50px;
+      }
+      &.active {
+        color:#3780f7;
+        box-shadow: inset 0 -2px 0 #3780f7;
+        span {
+          color: #3780f7;
+        }
+      }
+    }
+  }
+  .user-tab3 {
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    height: 50px;
+    display: flex;
+    border-bottom: 1px solid #ebebeb;
+    top: 0;
+    left:0;
+    z-index: 5;
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      color: #31445b;
+      text-align: center;
+      flex-basis: 25%;
+      height: 100%;
+      line-height: 50px;
+      span {
+        margin-left: 4px;
+        font-size: 13px;
+        color: #b2bac2;
+        line-height: 50px;
+      }
+      &.active {
+        color:#3780f7;
+        box-shadow: inset 0 -2px 0 #3780f7;
+        span {
+          color: #3780f7;
         }
       }
     }
