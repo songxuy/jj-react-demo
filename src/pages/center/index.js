@@ -1,6 +1,7 @@
-import React , { useState, useEffect, useRef, useCallback } from 'react';
+import React , { useState, useEffect, useRef, useContext } from 'react';
 import './index.scss'
 import CenterItem from '@/components/centerItem';
+import { Context } from '@/context';
 function Center() {
   const flagList = [
     '你的武器库有哪些武（ji）器（shu）？',
@@ -63,7 +64,8 @@ function Center() {
   const [flagIdx, setFlagIdx] = useState(0);
   const [tabIdx, setTabIdx] = useState(0);
   const timer = useRef(null)
-  const [top, setTop] = useState(0)
+ /*  const [top, setTop] = useState(0) */
+  const top = useContext(Context);
   const changeLike = (item) => {
     articleList.forEach(it => {
       if (it.id === item.id) {
@@ -93,7 +95,7 @@ function Center() {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  const handleScroll = useCallback(() => {
+/*   const handleScroll = useCallback(() => {
     //滚动条高度
     // let clientHeight = document.documentElement.clientHeight; //可视区域高度
     let scrollTop  = document.documentElement.scrollTop;  //滚动条滚动高度
@@ -105,7 +107,7 @@ function Center() {
     return () => {
       window.removeEventListener('scroll', handleScroll, false);
     }
-  }, [handleScroll])
+  }, [handleScroll]) */
   return (
     <div className="center">
       <div className="user-info">
