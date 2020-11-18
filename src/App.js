@@ -12,6 +12,7 @@ import Point from '@/pages/point';
 import Topic from '@/pages/topic';
 import Volumes from '@/pages/volumes';
 import Center from '@/pages/center';
+import SetInfo from '@/pages/setInfo'
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
@@ -89,6 +90,7 @@ function App() {
             <Route path="/topic" component={Topic} />
             <Route path="/volumes" component={Volumes} />
             <Route path="/center" component={Center} />
+            <Route path="/setInfo" component={SetInfo} />
 			  	</Switch>
           </Context.Provider>
       </div>
