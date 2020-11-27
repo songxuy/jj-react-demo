@@ -89,8 +89,8 @@ function App() {
             <Route path="/point" component={Point} />
             <Route path="/topic" component={Topic} />
             <Route path="/volumes" component={Volumes} />
-            <Route path="/center" component={Center} />
             <Route path="/setInfo" component={SetInfo} />
+            <Route path="/center" component={Center} />
 			  	</Switch>
           </Context.Provider>
       </div>

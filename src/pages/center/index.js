@@ -2,7 +2,7 @@ import React , { useState, useEffect, useRef, useContext } from 'react';
 import './index.scss'
 import CenterItem from '@/components/centerItem';
 import { Context } from '@/context';
-function Center() {
+function Center(props) {
   const flagList = [
     '你的武器库有哪些武（ji）器（shu）？',
     '你的人生格言是什么？',
@@ -108,6 +108,11 @@ function Center() {
       window.removeEventListener('scroll', handleScroll, false);
     }
   }, [handleScroll]) */
+  const toPage = () => {
+    props.history.push({
+      pathname: '/setInfo'
+    }); 
+  }
   return (
     <div className="center">
       <div className="user-info">
@@ -132,7 +137,7 @@ function Center() {
             <span>0</span>
             <span>掘力值</span>
           </p>
-          <p className="btn">
+          <p className="btn" onClick={() => toPage()}>
             设置
           </p>
         </div>
