@@ -13,10 +13,10 @@ function Topic() {
     const column = Math.floor(clientWidth / waterWidth);
     const rows = Math.floor(clientHeight / waterHeight);
     const waterWrapper = document.createElement('div');
-    console.log(clientWidth, clientHeight, rows, column)
+    console.log(clientWidth, clientHeight, rows, column);
     for (let i = 0; i < column * rows; i++) {
         const wrap = document.createElement('div');
-        wrap.innerHTML = '凉风有信'
+        wrap.innerHTML = '凉风有信';
         cssHelper(wrap, Object.create({
           position: 'relative',
           display: 'inline-block',
@@ -34,15 +34,15 @@ function Topic() {
           flex: `0 0 ${waterWidth}px`,
           textAlign: 'center'
         }));
-        /* wrap.appendChild(createItem()); */
-        waterWrapper.appendChild(wrap)
+        /* wrap.appendChild(createItem()); z */
+        waterWrapper.appendChild(wrap);
     }
     let parent = document.querySelector('.topic');
-    parent.appendChild(waterWrapper)
+    parent.appendChild(waterWrapper);
   }
   const createWaterMark = () => { 
     const angle = -20;
-    const txt = '秋风的笔记'
+    const txt = '凉风有信';
     const canvas = document.createElement('canvas');
     canvas.width = 180;
     canvas.height = 100;
@@ -50,7 +50,7 @@ function Topic() {
     ctx.clearRect(0, 0, 180, 100);
     ctx.fillStyle = '#000';
     ctx.globalAlpha = 0.1;
-    ctx.font = `16px serif`
+    ctx.font = `16px serif`;
     ctx.rotate(Math.PI / 180 * angle);
     ctx.fillText(txt, 0, 50);
     return canvas.toDataURL();
@@ -58,7 +58,7 @@ function Topic() {
   const createCanvas = () => {
     const watermakr = document.createElement('div');
     watermakr.className = 'watermark';
-    watermakr.style.backgroundImage = `url(${createWaterMark()})`
+    watermakr.style.backgroundImage = `url(${createWaterMark()})`;
     let parent = document.querySelector('.topic');
     parent.appendChild(watermakr);
   }
@@ -82,14 +82,14 @@ function Topic() {
   const createSvg = () => {
     const watermakr = document.createElement('div');
     watermakr.className = 'watermark';
-    watermakr.style.backgroundImage = `url(${createWaterMarks()})`
-    let parent = document.querySelector('.topic');
+    watermakr.style.backgroundImage = `url(${createWaterMarks()})`;
+    let parent = document.querySelector('.topic');                                                                  
     parent.appendChild(watermakr);
   }
   useEffect(() => {
-    //generateWatemark();
-    // createCanvas()
-    createSvg()
+    //generateWatemark();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    createCanvas()
+    // createSvg();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
