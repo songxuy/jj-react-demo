@@ -12,7 +12,8 @@ import Point from '@/pages/point';
 import Topic from '@/pages/topic';
 import Volumes from '@/pages/volumes';
 import Center from '@/pages/center';
-import SetInfo from '@/pages/setInfo'
+import SetInfo from '@/pages/setInfo';
+import Message from '@/pages/message';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
@@ -76,7 +77,7 @@ function App() {
             </span>
           </Dropdown>
           <Input placeholder="搜索B站" style={{width: '120px', height: '34px', margin: '0 10px 0 20px'}} onPressEnter={(e) => console.log(e.target.value)}/>
-          <MessageFilled style={{color: '#71777c', fontSize: '24px', padding: '0 10px'}}/>
+          <Link to="/message"><MessageFilled style={{color: '#71777c', fontSize: '24px', padding: '0 10px'}}/></Link>
           <Link to="/center"><img className="usericon" src={require('./assets/images/icon.png')} alt="user icon"/></Link>
         </div> 
       </div>
@@ -91,6 +92,7 @@ function App() {
             <Route path="/volumes" component={Volumes} />
             <Route path="/setInfo" component={SetInfo} />
             <Route path="/center" component={Center} />
+            <Route path="/message" component={Message} />
 			  	</Switch>
           </Context.Provider>
       </div>
