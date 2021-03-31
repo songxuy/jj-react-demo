@@ -148,14 +148,28 @@ function Home() {
   );
   let { name } = useParams();
   const [active, setActive] = useState(0);
-  const [showAll, setShowAll] = useState(false)
-  const tagList = {
-    "后端": ['Java', '后端', 'Spring Boot', 'Python' ,'Go', 'Spring', 'MySQL', 'Redis', '数据库', '算法', '架构', 'JVM', '服务器', 'Linux', '设计模式'],
-    "前端": ['JavaScript', '前端', 'Vue.js', 'React.js' ,'Node.js', 'CSS', 'Webpack', '微信小程序', '面试', 'TypeScript', 'Flutter', '浏览器', 'Github', 'Promise', '前端框架'],
-    "Android": ['Android', 'Flutter', 'Java', 'Kotlin' ,'源码', 'Android Jetpack', 'gradle', 'Github', 'Google', '面试', '开源', '架构', '性能优化', 'RxJava', 'Android Studio']
-  }
+  const tagList = [
+    {
+      name: '后端',
+      tags: ['Java', '后端', 'Spring Boot', 'Python', 'Go', 'Spring', 'MySQL', 'Redis', '数据库', '算法', '架构', 'JVM', '服务器', 'Linux', '设计模式'],
+      showAll: false,
+      nowTab: 0
+    },
+    {
+      name: '前端',
+      tags: ['JavaScript', '前端', 'Vue.js', 'React.js' ,'Node.js', 'CSS', 'Webpack', '微信小程序', '面试', 'TypeScript', 'Flutter', '浏览器', 'Github', 'Promise', '前端框架'],
+      showAll: false,
+      nowTab: 0
+    },
+    {
+      name: 'Android',
+      tags: ['Android', 'Flutter', 'Java', 'Kotlin' ,'源码', 'Android Jetpack', 'gradle', 'Github', 'Google', '面试', '开源', '架构', '性能优化', 'RxJava', 'Android Studio'],
+      showAll: false,
+      nowTab: 0
+    }
+  ]
   let [tabIndex, setTabIndex] = useState(0);
-  const [nowTagList, setNowTagList] = useState([])
+  const [nowTagList, setNowTagList] = useState({})
   const tabList = [
     { name: '推荐', link: '/home/推荐' },
     { name: '关注', link: '/home/关注' },
@@ -182,6 +196,9 @@ function Home() {
     })
     setList([...list]); // 重新赋值render
   }
+  const setShowAll = (val) => {
+    setNowTagList({...nowTagList, showAll: val});
+  }
   const changeTab = useCallback(
     (i) => {
       if (i !== tabIndex) {
@@ -190,8 +207,8 @@ function Home() {
     }, [tabIndex]);
   useEffect(() => {
     for(const key in tagList) {
-      if (key === name) {
-        setNowTagList([...tagList[key]]);
+      if (tagList[key].name === name) {
+        setNowTagList({...tagList[key]});
         break;
       }
     }
@@ -224,14 +241,14 @@ function Home() {
         </ul>
       </div>
       {
-        nowTagList.length ? <div className="tag-list">
-        <p className="active">全部</p>
+        nowTagList.tags && nowTagList.tags.length ? <div className="tag-list">
+          <p className={nowTagList.nowTab === 0 ? 'active' : ''} onClick={() => setNowTagList({ ...nowTagList, nowTab: 0 })}>全部</p>
         {
-          (showAll ? nowTagList : nowTagList.slice(0, 9)).map((it) => {
-            return <p key={it}>{it}</p>
+          (nowTagList.showAll ? nowTagList.tags : nowTagList.tags.slice(0, 9)).map((it,idx) => {
+            return <p key={it} onClick={() => setNowTagList({...nowTagList, nowTab: idx + 1}) } className={nowTagList.nowTab === idx+1 ? 'active' : ''}>{it}</p>
           })
         }
-        { !showAll ? <p onClick={() => setShowAll(true)}>展开<CaretDownOutlined style={{color: '#8a9aa9'}}/></p> : undefined}
+        { !nowTagList.showAll ? <p onClick={() => setShowAll(true)}>展开<CaretDownOutlined style={{color: '#8a9aa9'}}/></p> : undefined}
       </div> : undefined
       }
       { name === '推荐' ? <p className="tab">

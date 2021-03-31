@@ -68,7 +68,7 @@ function Center(props) {
   const top = useContext(Context);
   const changeLike = (item) => {
     articleList.forEach(it => {
-      if (it.id === item.id) {
+      if (it.id === item.id) { 
         it.hasZan = !it.hasZan
         if (it.hasZan) {
           it.zanNum++

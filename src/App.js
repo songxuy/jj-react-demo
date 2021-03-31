@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
-  Link
+  Link,
+  useLocation,
+  useHistory
 } from "react-router-dom";
 import HomePage from './pages/home';
 import Activity from '@/pages/activity';
@@ -14,17 +15,23 @@ import Volumes from '@/pages/volumes';
 import Center from '@/pages/center';
 import SetInfo from '@/pages/setInfo';
 import Message from '@/pages/message';
+import Search from '@/pages/search'
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
 import logo from '@/assets/images/juejin.svg';
 import { Context } from './context/index.js';
-function App() {
+import queryString from 'query-string'
+function App( ) {
   let [menuVisible, setMenuVisible] = useState(false);
-  
+  let [placeholder, setPlaceeholder] = useState('搜索B站');
+  let [showSearch, setShowSearch] = useState(false)
   let [top, setTop] = useState(0);
-  let [dropIndex, setDropIndex] = useState('0');
-  
+  let [dropIndex, setDropIndex] = useState();
+  let { pathname } = useLocation();
+  let [searchValue, setSearchValue] = useState('')
+  let history = useHistory();
+  let [historyData, setHistoryData] = useState([])
   const menu =(
       <Menu 
         style={{ width: 80, textAlign: 'center' }}
@@ -58,15 +65,76 @@ function App() {
     // let scrollHeight =document.documentElement.scrollHeight; //滚动内容高度
     setTop(scrollTop);
   }, [])
+  const handleFocus = useCallback((e) => {
+    if (!e.target.value.length) {
+      setPlaceeholder('文章/小册/标签/用户')
+      if (historyData.length) {
+        setShowSearch(true)
+      }
+    }
+  }, [historyData.length])
+  const handleBlur = useCallback((e) => {
+    setPlaceeholder('搜索B站')
+    setTimeout(() => {
+      setShowSearch(false)
+    })
+  }, [])
+  const handleChange = (e) => {
+    setSearchValue(e.target.value)
+    if (e.target.value.length) {
+      setShowSearch(false)
+    } else {
+      if (historyData.length) {
+        setShowSearch(true)
+      }
+    }
+  }
+  const handlePressEnter = (e) => {
+    if (e.target.value.length) {
+      if (historyData.indexOf(e.target.value) === -1) {
+        let arr = [].concat(historyData)
+        arr.unshift(e.target.value)
+        setHistoryData(arr)
+        localStorage.setItem('history', JSON.stringify(arr))
+      }
+      history.push({
+        pathname: '/search',
+        search: "?query=" + e.target.value
+      })
+    }
+  }
+  const toSearch = (val) => {
+    setSearchValue(val)
+    console.log(val)
+    history.push({
+      pathname: '/search',
+      search: "?query=" + val
+    })
+  }
+  const clearHistory = () => {
+    setHistoryData([])
+    localStorage.setItem("history", JSON.stringify([]))
+  }
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, false);
     return () => {
       window.removeEventListener('scroll', handleScroll, false);
     }
   }, [handleScroll])
-  
+  useEffect(() => {
+    if (pathname.indexOf('message')!==-1 || pathname.indexOf('center')!==-1) {
+      setDropIndex('')
+    }
+    if (window.location.search.indexOf('query')) {
+      setSearchValue(queryString.parse(window.location.search).query)
+    }
+  }, [pathname])
+  useEffect(() => {
+    if (localStorage.getItem('history')) {
+      setHistoryData(JSON.parse(localStorage.getItem('history')))
+    }
+  }, [])
   return (
-    <Router>
     <div className="App">
       <div className="header" style={{transform: top > 150 ? 'translate3d(0,-60px,0)' : 'translate3d(0,0,0)'}}>
         <div className="header-top">
@@ -76,9 +144,24 @@ function App() {
               首页 <CaretDownOutlined style={{color: '#007fff', transition: 'all .5s', transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)'}}/>
             </span>
           </Dropdown>
-          <Input placeholder="搜索B站" style={{width: '120px', height: '34px', margin: '0 10px 0 20px'}} onPressEnter={(e) => console.log(e.target.value)}/>
+          <div className="search">
+            <Input placeholder={placeholder} value={ searchValue } style={{ width: '120px', height: '34px' }} onChange={(e) => handleChange(e)} onFocus={(e) => handleFocus(e)} onBlur={handleBlur} onPressEnter={ (e) => handlePressEnter(e)}/>
+            <div className="search-history" style={{display: showSearch ? 'block' : 'none'}}>
+              <div className="header">
+                <p>搜索历史</p>
+                <p onClick={ clearHistory }>清空</p>
+              </div>
+              <div className="list">
+                {
+                  historyData.map((item, idx) => {
+                    return <div className="item" key={ idx } onClick={ () => toSearch(item)}>{ item }</div>
+                  })
+                }
+              </div>
+            </div>
+          </div>
           <Link to="/message"><MessageFilled style={{color: '#71777c', fontSize: '24px', padding: '0 10px'}}/></Link>
-          <Link to="/center"><img className="usericon" src={require('./assets/images/icon.png')} alt="user icon"/></Link>
+          <Link to="/center"><img className="usericon" src={require('./assets/images/icon.png')} alt="user icon" /></Link>
         </div> 
       </div>
       <div style={{marginTop: '60px'}}>
@@ -93,11 +176,11 @@ function App() {
             <Route path="/setInfo" component={SetInfo} />
             <Route path="/center" component={Center} />
             <Route path="/message" component={Message} />
+            <Route path="/search" component={Search} />
 			  	</Switch>
           </Context.Provider>
       </div>
     </div>
-    </Router>
   );
 }
 
