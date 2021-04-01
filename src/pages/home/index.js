@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import { Context } from '@/context';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 function Home() {
   const [list, setList] = useState(
     [
@@ -205,6 +206,23 @@ function Home() {
         setTabIndex(i);
       }
     }, [tabIndex]);
+  
+  const onBeforeCapture = useCallback(() => {
+    console.log('capture')
+    /*...*/
+  }, []);
+  const onBeforeDragStart = useCallback(() => {
+    /*...*/
+  }, []);
+  const onDragStart = useCallback(() => {
+    /*...*/
+  }, []);
+  const onDragUpdate = useCallback(() => {
+    /*...*/
+  }, []);
+  const onDragEnd = useCallback(() => {
+    // the only one that is required
+  }, []);
   useEffect(() => {
     for(const key in tagList) {
       if (tagList[key].name === name) {
@@ -255,12 +273,41 @@ function Home() {
         <span className = {active === 0 ?'active' : ''} onClick={() => setActive(0)}>热门</span>
         <span className = {active === 1 ?'active' : ''} onClick={() => setActive(1)}>最新</span>
         <span className = {active === 2 ?'active' : ''} onClick={() => setActive(2)}>热榜</span>
-      </p> : undefined }
-      {
-        list.map((item, index) => {
-          return <ArticleItem key={item.id + index.toString()} item={item} changeLike={changeLike}/>
-        })
-      }
+      </p> : undefined}
+      <DragDropContext
+        onBeforeCapture={onBeforeCapture}
+        onBeforeDragStart={onBeforeDragStart}
+        onDragStart={onDragStart}
+        onDragUpdate={onDragUpdate}
+        onDragEnd={onDragEnd}
+      >
+        <Droppable droppableId="droppable-1" type="PERSON" direction="vertical">
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
+              {...provided.droppableProps}
+            >
+              {
+                list.map((item, index) => {
+
+                  return <Draggable draggableId={ "draggable" + index} index={index} key={index}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                      >
+                        <ArticleItem key={item.id + index.toString()} item={item} changeLike={changeLike} />
+                        </div>
+                        )}
+                      </Draggable>
+                })
+              }
+            </div>
+          )}
+          </Droppable>
+        </DragDropContext> 
     </div>
   );
 }
