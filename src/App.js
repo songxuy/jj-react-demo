@@ -178,7 +178,7 @@ function App( ) {
             <Route path="/message" component={Message} />
             <Route path="/search" component={Search} />
 			  	</Switch>
-          </Context.Provider>
+        </Context.Provider>
       </div>
     </div>
   );
