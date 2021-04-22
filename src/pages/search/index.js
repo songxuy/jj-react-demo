@@ -1,15 +1,11 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './index.scss';
-import {
-  useParams
-} from "react-router-dom";
 import { Context } from '@/context';
 import queryString from 'query-string'
 function Search(props) {
-  let { name } = useParams();
   const [active, setActive] = useState(0);
   let [tabIndex, setTabIndex] = useState(0);
-  let [data, setData] = useState([])
+  let [data] = useState([])
   const tabList = [
     { name: '综合', link: '/home/推荐' },
     { name: '文章', link: '/home/关注' },

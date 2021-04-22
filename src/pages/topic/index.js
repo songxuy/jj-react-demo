@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import './index.scss';
 function Topic() {
-  const cssHelper = (el, prototype) => {
+  /* const cssHelper = (el, prototype) => {
     for (let i in prototype) {
       el.style[i] = prototype[i]
     }
-  }
-  const generateWatemark = () => {
+  } */
+  /* const generateWatemark = () => {
     const waterHeight = 100;
     const waterWidth = 180;
     const { clientWidth, clientHeight } = document.documentElement || document.body;
@@ -34,12 +34,11 @@ function Topic() {
           flex: `0 0 ${waterWidth}px`,
           textAlign: 'center'
         }));
-        /* wrap.appendChild(createItem()); z */
         waterWrapper.appendChild(wrap);
     }
     let parent = document.querySelector('.topic');
     parent.appendChild(waterWrapper);
-  }
+  } */
   const createWaterMark = () => { 
     const angle = -20;
     const txt = '凉风有信';
@@ -62,7 +61,7 @@ function Topic() {
     let parent = document.querySelector('.topic');
     parent.appendChild(watermakr);
   }
-  const createWaterMarks = () => {
+  /* const createWaterMarks = () => {
     const svgStr =
       `<svg xmlns="http://www.w3.org/2000/svg" width="180px" height="100px">
         <text x="0px" y="30px" dy="16px"
@@ -78,14 +77,14 @@ function Topic() {
         </text>
       </svg>`;
     return `data:image/svg+xml;base64,${window.btoa(unescape(encodeURIComponent(svgStr)))}`;
-  }
-  const createSvg = () => {
+  } */
+  /* const createSvg = () => {
     const watermakr = document.createElement('div');
     watermakr.className = 'watermark';
     watermakr.style.backgroundImage = `url(${createWaterMarks()})`;
     let parent = document.querySelector('.topic');                                                                  
     parent.appendChild(watermakr);
-  }
+  } */
   useEffect(() => {
     //generateWatemark();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     createCanvas()
