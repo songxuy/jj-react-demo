@@ -28,4 +28,4 @@ jobs:
           github_token: ${{ secrets.REACT_TOKEN }} # secret 名
           user_name: songxuyuan
           user_email: 541046145@qq.com
-          commit_message: Update vue3-demo1 # 部署时的 git 提交信息，自由填写
+          commit_message: Update jj-react # 部署时的 git 提交信息，自由填写
