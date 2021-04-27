@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { Context } from '@/context';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Spin } from 'antd';
 function Home() {
   const [list, setList] = useState(
     [
@@ -223,6 +224,23 @@ function Home() {
   const onDragEnd = useCallback(() => {
     // the only one that is required
   }, []);
+  const handleEnd = () => {
+    let obj = new IntersectionObserver(entries => {
+      let item = entries[0]
+      if (item.isIntersecting) {
+        setTimeout(() => {
+          setList((list) => list.concat(list))
+        }, 1000)
+      }
+    })
+    obj.observe(document.querySelectorAll('.foot')[0])
+    /* this.setState({
+      observer: obj
+    }) */
+  }
+  useEffect(() => {
+    handleEnd()
+  }, [])
   useEffect(() => {
     for(const key in tagList) {
       if (tagList[key].name === name) {
@@ -304,6 +322,7 @@ function Home() {
                       </Draggable>
                 })
               }
+              <div className="foot"><Spin /></div>
             </div>
           )}
           </Droppable>
