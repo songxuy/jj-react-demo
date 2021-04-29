@@ -1,0 +1,51 @@
+.container {
+  position: relative;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  .icon {
+    position: relative;
+    margin-right: 20px;
+    img {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      border-radius: 100%;
+    }
+  }
+  .comment_info {
+    flex: 1;
+    .name {
+      font-size: 16px;
+      font-weight: 500;
+      color: #2e3135;
+      white-space: nowrap;
+      width: 200px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .action {
+      font-size: 14px;
+      font-weight: 400;
+      color: #2e3135;
+    }
+    .time {
+      font-size: 12px;
+      font-weight: 400;
+      color: #8a9aa9;
+    }
+  }
+  .btn {
+    .success {
+      color: #37c701;
+      border-color: #37c701;
+      &:focus {
+        border-color: #37c701;
+      }
+    }
+  }
+}
