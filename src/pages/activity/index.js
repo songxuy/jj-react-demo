@@ -52,7 +52,7 @@ function Activity() {
     const draw = () => {
       /* const canvas = this.canvas;
       const ctx = canvas.getContext('2d'); */
-      ctx.clearRect(0, 0, canvas.current.width, canvas.current.height);
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
       // 曲线绘制
       if (!isDrawCircle) {
         drawCircle(ctx);
