@@ -17,6 +17,7 @@ import SetInfo from '@/pages/setInfo';
 import Message from '@/pages/message';
 import Search from '@/pages/search'
 import People from '@/pages/people';
+import CountDown from '@/pages/countDown';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
@@ -54,6 +55,9 @@ function App( ) {
         </Menu.Item>
         <Menu.Item key="5" onClick={() => changeDrop('5')}>
           <Link to="/people">Peo</Link>
+        </Menu.Item>
+        <Menu.Item key="6" onClick={() => changeDrop('6')}>
+          <Link to="/countDown">倒计时</Link>
         </Menu.Item>
       </Menu>
 
@@ -182,6 +186,7 @@ function App( ) {
             <Route path="/message" component={Message} />
             <Route path="/search" component={Search} />
             <Route path="/people" component={People} />
+            <Route path="/countDown" component={CountDown} />
 			  	</Switch>
         </Context.Provider>
       </div>
