@@ -48,59 +48,59 @@ function CountDown() {
     <div className="countDown">
       <div className="box">
         <p className="title">距结束</p>
-        <div className="cat-count-down-wrap" data-mutation="9">
-          <div className="cat-flip-item-content" data-mutation="9">
-            <div data-mutation="9">
-              <div className="cat-flip-container" data-mutation="9">
-                <div className="cat-flip-content" data-mutation="9">
-                  <div className={`cat-flip-item front number${getTime('h', time).slice(0,1)}`} data-mutation="9"></div>
-                  <div className={`cat-flip-item back number${getTime('h', time).slice(0,1) === '0' ? '9' : getTime('h', time).slice(0,1) - 1}`} data-mutation="9"></div>
+        <div className="cat-count-down-wrap">
+          <div className="cat-flip-item-content">
+            <div>
+              <div className="cat-flip-container">
+                <div className="cat-flip-content">
+                  <div className={`cat-flip-item front number${getTime('h', time).slice(0,1)}`}></div>
+                  <div className={`cat-flip-item back number${getTime('h', time).slice(0,1) === '0' ? '9' : getTime('h', time).slice(0,1) - 1}`}></div>
                 </div>
               </div>
             </div>
-            <div data-mutation="9">
-              <div className="cat-flip-container" data-mutation="9">
-                <div className="cat-flip-content" data-mutation="9">
-                  <div className={`cat-flip-item front number${getTime('h', time).slice(1)}`} data-mutation="9"></div>
-                  <div className={`cat-flip-item back number${getTime('h', time).slice(1) === '0' ? '9' : getTime('h', time).slice(1) - 1}`} data-mutation="9"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="dot" data-mutation="9">:</div>
-          <div className="cat-flip-item-content" data-mutation="9">
-            <div data-mutation="9">
-              <div className="cat-flip-container" data-mutation="9">
-                <div className="cat-flip-content" data-mutation="9">
-                  <div className={`cat-flip-item front number${getTime('m', time).slice(0,1)}`} data-mutation="9"></div>
-                  <div className={`cat-flip-item back number${getTime('m', time).slice(0,1) === '0' ? '5' : getTime('m', time).slice(0,1) - 1}`} data-mutation="9"></div>
-                </div>
-              </div>
-            </div>
-            <div data-mutation="9">
-              <div className="cat-flip-container" data-mutation="9">
-                <div className="cat-flip-content" data-mutation="9">
-                <div className={`cat-flip-item front number${getTime('m', time).slice(1)}`} data-mutation="9"></div>
-                  <div className={`cat-flip-item back number${getTime('m', time).slice(1) === '0' ? '9' : getTime('m', time).slice(1) - 1}`} data-mutation="9"></div>
+            <div>
+              <div className="cat-flip-container">
+                <div className="cat-flip-content">
+                  <div className={`cat-flip-item front number${getTime('h', time).slice(1)}`}></div>
+                  <div className={`cat-flip-item back number${getTime('h', time).slice(1) === '0' ? '9' : getTime('h', time).slice(1) - 1}`}></div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="dot" data-mutation="9">:</div>
-          <div className="cat-flip-item-content" data-mutation="9">
-            <div data-mutation="9">
-              <div className="cat-flip-container" data-mutation="9">
-                <div className="cat-flip-content" data-mutation="9">
-                  <div className={`cat-flip-item front number${getTime('s', time).slice(0, 1)}`} data-mutation="9"></div>
-                  <div className={`cat-flip-item back number${getTime('s', time).slice(0,1) === '0' ? '5' : getTime('s', time).slice(0,1) - 1}`} data-mutation="9"></div>
+          <div className="dot">:</div>
+          <div className="cat-flip-item-content">
+            <div >
+              <div className="cat-flip-container">
+                <div className="cat-flip-content">
+                  <div className={`cat-flip-item front number${getTime('m', time).slice(0,1)}`}></div>
+                  <div className={`cat-flip-item back number${getTime('m', time).slice(0,1) === '0' ? '5' : getTime('m', time).slice(0,1) - 1}`}></div>
                 </div>
               </div>
             </div>
-            <div data-mutation="9">
-              <div className="cat-flip-container" data-mutation="9">
-                <div className="cat-flip-content" data-mutation="9">
-                  <div className={`cat-flip-item front number${getTime('s', time).slice(1)}`} data-mutation="9"></div>
-                  <div className={`cat-flip-item back number${getTime('s', time).slice(1) === '0' ? '9' : getTime('s', time).slice(1) - 1}`} data-mutation="9"></div>
+            <div >
+              <div className="cat-flip-container">
+                <div className="cat-flip-content">
+                  <div className={`cat-flip-item front number${getTime('m', time).slice(1)}`}></div>
+                  <div className={`cat-flip-item back number${getTime('m', time).slice(1) === '0' ? '9' : getTime('m', time).slice(1) - 1}`}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="dot">:</div>
+          <div className="cat-flip-item-content">
+            <div >
+              <div className="cat-flip-container">
+                <div className="cat-flip-content">
+                  <div className={`cat-flip-item front number${getTime('s', time).slice(0, 1)}`}></div>
+                  <div className={`cat-flip-item back number${getTime('s', time).slice(0,1) === '0' ? '5' : getTime('s', time).slice(0,1) - 1}`}></div>
+                </div>
+              </div>
+            </div>
+            <div >
+              <div className="cat-flip-container">
+                <div className="cat-flip-content">
+                  <div className={`cat-flip-item front number${getTime('s', time).slice(1)}`}></div>
+                  <div className={`cat-flip-item back number${getTime('s', time).slice(1) === '0' ? '9' : getTime('s', time).slice(1) - 1}`}></div>
                 </div>
               </div>
             </div>
