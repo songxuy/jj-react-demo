@@ -1,0 +1,14 @@
+.scratch {
+  position: relative;
+  canvas {
+    position: relative;
+    z-index: 1;
+  }
+  .text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+  }
+}

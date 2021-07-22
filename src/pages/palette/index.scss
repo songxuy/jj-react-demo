@@ -1,0 +1,37 @@
+.palette {
+  position: relative;
+  background-color: #F8F7FF;
+  width:100%;
+  .menu {
+    display: flex;
+    position: relative;
+    align-items: center;
+    padding: 10px;
+    .btn {
+      position: relative;
+      padding: 5px 10px;
+      border-radius: 4px;
+      color: #fff;
+      margin-right:5px;
+      cursor: pointer;
+      &.primary {
+        background-color: #1989fa;
+      }
+      &.success {
+        background-color: #07c160;
+      }
+      &.warning {
+        background-color: #ff976a;
+      }
+      &.normal {
+        color: #323233;
+        background-color: #fff;
+        border: 1px solid #ebedf0;
+      }
+    }
+  }
+  canvas {
+    border: 1px solid black;
+    margin: 0 2px;
+  }
+}

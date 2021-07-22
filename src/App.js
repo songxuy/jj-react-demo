@@ -18,13 +18,16 @@ import Message from '@/pages/message';
 import Search from '@/pages/search'
 import People from '@/pages/people';
 import CountDown from '@/pages/countDown';
+import Clock from '@/pages/clock';
+import Scratch from '@/pages/scratch';
+import Palette from '@/pages/palette';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
 import logo from '@/assets/images/juejin.svg';
 import { Context } from './context/index.js';
 import queryString from 'query-string'
-function App( ) {
+function App() {
   let [menuVisible, setMenuVisible] = useState(false);
   let [placeholder, setPlaceeholder] = useState('搜索B站');
   let [showSearch, setShowSearch] = useState(false)
@@ -58,6 +61,15 @@ function App( ) {
         </Menu.Item>
         <Menu.Item key="6" onClick={() => changeDrop('6')}>
           <Link to="/countDown">倒计时</Link>
+      </Menu.Item>
+      <Menu.Item key="7" onClick={() => changeDrop('7')}>
+          <Link to="/clock">时钟</Link>
+      </Menu.Item>
+      <Menu.Item key="8" onClick={() => changeDrop('8')}>
+          <Link to="/scratch">刮奖</Link>
+      </Menu.Item>
+      <Menu.Item key="9" onClick={() => changeDrop('9')}>
+          <Link to="/palette">画板</Link>
         </Menu.Item>
       </Menu>
 
@@ -187,6 +199,9 @@ function App( ) {
             <Route path="/search" component={Search} />
             <Route path="/people" component={People} />
             <Route path="/countDown" component={CountDown} />
+            <Route path="/clock" component={Clock} />
+            <Route path="/scratch" component={Scratch} />
+            <Route path="/palette" component={Palette} />
 			  	</Switch>
         </Context.Provider>
       </div>
