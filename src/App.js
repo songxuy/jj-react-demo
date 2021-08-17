@@ -69,7 +69,7 @@ function App() {
           <Link to="/scratch">刮奖</Link>
       </Menu.Item>
       <Menu.Item key="9" onClick={() => changeDrop('9')}>
-          <Link to="/palette">画板 </Link>
+          <Link to="/palette">画板</Link>
         </Menu.Item>
       </Menu>
 
