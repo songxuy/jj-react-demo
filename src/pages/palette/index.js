@@ -129,9 +129,9 @@ function Palette() {
   return (
     <div className="palette">
       <div className="menu">
-        <p className="btn primary" onClick={() => setType('huabi')}>画笔 {type === 'huabi' ? <CheckOutlined style={{color: '#fff', marginLeft: '5px'}}/> : '' }</p>
-        <p className="btn success" onClick={() => setType('rect')}>正方形 { type === 'rect' ? <CheckOutlined style={{color: '#fff', marginLeft: '5px'}}/> : '' }</p>
-        <p className="btn warning" onClick={() => setType('arc')}>圆形 { type === 'arc' ? <CheckOutlined style={{color: '#fff', marginLeft: '5px'}}/> : '' }</p>
+        <p className="btn primary" onClick={() => setType('huabi')}>画笔 {type === 'huabi' ? <CheckOutlined style={{color: '#fff', marginLeft: '5px'}} /> : '' }</p>
+        <p className="btn success" onClick={() => setType('rect')}>正方形 { type === 'rect' ? <CheckOutlined style={{color: '#fff', marginLeft: '5px'}} /> : '' }</p>
+        <p className="btn warning" onClick={() => setType('arc')}>圆形 { type === 'arc' ? <CheckOutlined style={{color: '#fff', marginLeft: '5px'}} /> : '' }</p>
         <ColorPicker color={color} setColor={setColor} />
         <p className="btn normal" style={{ marginLeft: '5px' }} onClick={ clear}>清空</p>
         <p className="btn normal" onClick={saveImg}>保存</p>

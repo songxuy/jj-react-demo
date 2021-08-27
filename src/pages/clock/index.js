@@ -9,7 +9,7 @@ function Clock() {
     const ctx = canvas.current.getContext('2d')
     const draw = () => {
       ctx.save()
-      ctx.clearRect(0, 0, 600, 600)
+      ctx.clearRect(0, 0, 300, 300)
       ctx.translate(150, 150)
       ctx.save()
       
