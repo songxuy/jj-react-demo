@@ -1,4 +1,4 @@
-.container {
+.container-color {
   display: inline-block;
   box-sizing: border-box;
   height: 30px;
@@ -22,7 +22,7 @@
     position: absolute;
     width: 220px;
     height: 220px;
-    bottom: -225px;
+    bottom: -225px; 
     left: -85px;
     z-index: 10;
     padding: 10px;

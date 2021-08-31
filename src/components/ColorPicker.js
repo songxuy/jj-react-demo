@@ -13,7 +13,7 @@ function ColorPick(props) {
     props.setColor(t)
   }
   return (
-    <div className="container">
+    <div className="container-color">
       <div className='color' style={{backgroundColor: color}} onClick={changeShow}>{color ? <DownOutlined style={{ color: '#fff', top: '-1px', position: 'relative'}}/>
         : <CloseOutlined style={{ color: '#000', top: '-1px', position: 'relative' }} />}</div>
       {

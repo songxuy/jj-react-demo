@@ -21,6 +21,7 @@ import CountDown from '@/pages/countDown';
 import Clock from '@/pages/clock';
 import Scratch from '@/pages/scratch';
 import Palette from '@/pages/palette';
+import Box from '@/pages/box';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
@@ -70,6 +71,9 @@ function App() {
       </Menu.Item>
       <Menu.Item key="9" onClick={() => changeDrop('9')}>
           <Link to="/palette">画板</Link>
+      </Menu.Item>
+      <Menu.Item key="10" onClick={() => changeDrop('10')}>
+          <Link to="/box">天空盒子</Link>
         </Menu.Item>
       </Menu>
 
@@ -202,6 +206,7 @@ function App() {
             <Route path="/clock" component={Clock} />
             <Route path="/scratch" component={Scratch} />
             <Route path="/palette" component={Palette} />
+            <Route path="/box" component={Box} />
 			  	</Switch>
         </Context.Provider>
       </div>
