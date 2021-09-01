@@ -22,6 +22,7 @@ import Clock from '@/pages/clock';
 import Scratch from '@/pages/scratch';
 import Palette from '@/pages/palette';
 import Box from '@/pages/box';
+import Loading from '@/components/loading';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
@@ -38,6 +39,7 @@ function App() {
   let [searchValue, setSearchValue] = useState('')
   let history = useHistory();
   let [historyData, setHistoryData] = useState([])
+  let [showLoading, setLoaing] = useState(false)
   const menu =(
       <Menu 
         style={{ width: 80, textAlign: 'center' }}
@@ -157,6 +159,10 @@ function App() {
     if (localStorage.getItem('history')) {
       setHistoryData(JSON.parse(localStorage.getItem('history')))
     }
+    setLoaing(true)
+    setTimeout(() => {
+      setLoaing(false)
+    }, 3000)
   }, [])
   return (
     <div className="App">
@@ -210,6 +216,7 @@ function App() {
 			  	</Switch>
         </Context.Provider>
       </div>
+      <Loading show={showLoading }/>
     </div>
   );
 }
