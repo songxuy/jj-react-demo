@@ -22,6 +22,7 @@ import Clock from '@/pages/clock';
 import Scratch from '@/pages/scratch';
 import Palette from '@/pages/palette';
 import Box from '@/pages/box';
+import TextAnimate from '@/pages/text';
 import Loading from '@/components/loading';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
@@ -76,6 +77,9 @@ function App() {
       </Menu.Item>
       <Menu.Item key="10" onClick={() => changeDrop('10')}>
           <Link to="/box">天空盒子</Link>
+        </Menu.Item>
+        <Menu.Item key="11" onClick={() => changeDrop('11')}>
+          <Link to="/text">文字动画</Link>
         </Menu.Item>
       </Menu>
 
@@ -213,6 +217,7 @@ function App() {
             <Route path="/scratch" component={Scratch} />
             <Route path="/palette" component={Palette} />
             <Route path="/box" component={Box} />
+            <Route path="/text" component={TextAnimate} />
 			  	</Switch>
         </Context.Provider>
       </div>
