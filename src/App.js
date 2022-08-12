@@ -24,6 +24,7 @@ import Palette from '@/pages/palette';
 import Box from '@/pages/box';
 import TextAnimate from '@/pages/text';
 import Loading from '@/components/loading';
+import BtnActive from '@/pages/btn';
 import './App.scss';
 import { Menu, Dropdown, Input } from 'antd';
 import { CaretDownOutlined, MessageFilled } from '@ant-design/icons';
@@ -80,6 +81,9 @@ function App() {
         </Menu.Item>
         <Menu.Item key="11" onClick={() => changeDrop('11')}>
           <Link to="/text">文字动画</Link>
+        </Menu.Item>
+        <Menu.Item key="12" onClick={() => changeDrop('12')}>
+          <Link to="/btn">按钮动效</Link>
         </Menu.Item>
       </Menu>
 
@@ -218,6 +222,7 @@ function App() {
             <Route path="/palette" component={Palette} />
             <Route path="/box" component={Box} />
             <Route path="/text" component={TextAnimate} />
+            <Route path="/btn" component={BtnActive} />
 			  	</Switch>
         </Context.Provider>
       </div>
